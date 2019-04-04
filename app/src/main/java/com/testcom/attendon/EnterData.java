@@ -1,12 +1,12 @@
 package com.testcom.attendon;
 
-public class Mahasiswa {
+public class EnterData {
 
     private String nama;
     private String npm;
     private String nohp;
 
-    public Mahasiswa(String nama, String npm, String nohp) {
+    public EnterData(String nama, String npm, String nohp) {
         this.nama = nama;
         this.npm = npm;
         this.nohp = nohp;

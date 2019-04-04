@@ -49,7 +49,7 @@ Button sign_button;
             }
         };
 
-        ss.setSpan(signup,1,24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(signup,2,23, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         sign_signup.setText(ss);
         sign_signup.setMovementMethod(LinkMovementMethod.getInstance());

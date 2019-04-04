@@ -24,12 +24,12 @@ Button register_button;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        register_firstname = findViewById(R.id.register_firstname);
-        register_lastname = findViewById(R.id.register_lastname);
+        register_firstname = findViewById(R.id.register_first);
+        register_lastname = findViewById(R.id.register_last);
         register_username = findViewById(R.id.register_username);
         register_email = findViewById(R.id.register_email);
         register_password = findViewById(R.id.register_password);
-        register_button = findViewById(R.id.register_button);
+        register_button = findViewById(R.id.create_create);
         register_signin = findViewById(R.id.register_signin);
 
 

@@ -1,65 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Class2Students">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/one"
-        android:layout_width="424dp"
-        android:layout_height="94dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/colorAccent2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lin1">
-
-        <TextView
-            android:id="@+id/txt_student"
-            android:layout_width="150dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="John Doe"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="107dp"
-            android:layout_height="84dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@mipmap/ic_launcher"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars[0]" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="35dp"
-            android:background="@color/colorAccent3"
-            android:fontFamily="@font/montserrat"
-            android:text="Remove"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/lin1"
         android:layout_width="0dp"
-        android:layout_height="72dp"
-        android:background="@color/colorAccent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimaryLight"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,10 +30,83 @@
             android:textSize="18sp" />
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lin1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="87dp"
+                android:layout_height="84dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@mipmap/ic_launcher"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars[0]" />
+
+            <TextView
+                android:id="@+id/txt_student"
+                android:layout_width="99dp"
+                android:layout_height="29dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="John Doe"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="35dp"
+                android:backgroundTint="@color/textIncorrect"
+                android:fontFamily="@font/montserrat"
+                android:text="Remove"
+                android:textColor="@color/textOnSecondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="411dp"
         android:layout_height="70dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/textOnSecondary"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -90,25 +115,29 @@
 
         <Button
             android:id="@+id/button2"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="218dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/colorAccent3"
+            android:backgroundTint="@color/colorSecondaryLight"
             android:fontFamily="@font/montserrat"
             android:text="Dismiss Class"
+            android:textColor="@color/textOnPrimary"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="26dp" />
 
         <Button
             android:id="@+id/button3"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/colorAccent3"
+            android:backgroundTint="@color/textIncorrect"
             android:fontFamily="@font/montserrat"
             android:text="End Class"
+            android:textColor="@color/textOnSecondary"
             tools:layout_editor_absoluteX="237dp"
             tools:layout_editor_absoluteY="26dp" />
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

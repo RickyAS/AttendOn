@@ -2,8 +2,8 @@ package com.testcom.attendon;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -49,7 +49,7 @@ Button register_button;
                 ds.setUnderlineText(false);
             }
         };
-        ss.setSpan(signin,1,33, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(signin,0,33, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         register_signin.setText(ss);
         register_signin.setMovementMethod(LinkMovementMethod.getInstance());

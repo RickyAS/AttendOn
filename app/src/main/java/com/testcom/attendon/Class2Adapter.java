@@ -1,11 +1,12 @@
 package com.testcom.attendon;
 
 import android.content.Intent;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class Class2Adapter extends RecyclerView.Adapter<Class2Adapter.MahasiswaV
     @Override
     public MahasiswaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.row_class, parent, false);
+        View view = layoutInflater.inflate(R.layout.row_class1, parent, false);
         return new MahasiswaViewHolder(view);
 
     }
@@ -53,13 +54,13 @@ public class Class2Adapter extends RecyclerView.Adapter<Class2Adapter.MahasiswaV
 
     public class MahasiswaViewHolder extends RecyclerView.ViewHolder{
         private TextView txtNama, txtNpm, txtNoHp;
-        private CardView cvMain;
+        private LinearLayout cvMain;
         public MahasiswaViewHolder(View itemView) {
             super(itemView);
             txtNama = (TextView) itemView.findViewById(R.id.txt_student);
             txtNpm = (TextView) itemView.findViewById(R.id.txt_npm_mahasiswa);
             txtNoHp = (TextView) itemView.findViewById(R.id.txt_nohp_mahasiswa);
-            cvMain = (CardView) itemView.findViewById(R.id.cv);
+            cvMain = (LinearLayout) itemView.findViewById(R.id.dog);
 
 
         }

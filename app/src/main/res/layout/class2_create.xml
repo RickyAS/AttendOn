@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,193 +9,229 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/textOnSecondary"
         tools:layout_editor_absoluteX="26dp"
         tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <android.support.constraint.ConstraintLayout
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Start Your Own Class"
+                android:textColor="@android:color/black"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                app:boxBackgroundColor="@color/textOnSecondary"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:id="@+id/create_classid"
+                    style="@style/LoginTextInputLayoutStyle"
+                    android:layout_width="235dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:layout_marginTop="79dp"
+                    android:layout_marginEnd="80dp"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="Class ID"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                app:boxBackgroundColor="@color/textOnSecondary"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:id="@+id/create_classname"
+                    style="@style/LoginTextInputLayoutStyle"
+                    android:layout_width="235dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:layout_marginTop="79dp"
+                    android:layout_marginEnd="80dp"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="Class Name"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView4"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="64dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Start Your Own Class"
-                    android:textColor="@android:color/black"
-                    android:textSize="30sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
 
-                <CheckBox
-                    android:id="@+id/create_checkbox"
+                    <TextView
+                        android:id="@+id/create_view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Start Time"
+                        android:textAlignment="center"
+                        android:textColor="@color/textOnPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/create_timeend" />
+
+                    <Button
+                        android:id="@+id/create_timestart"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/textOnSecondary"
+                        android:fontFamily="@font/montserrat"
+                        android:text="00:00"
+                        android:textColor="@color/textOnPrimary"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/register_last" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Repeat Every Week"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/create_view3" />
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/create_timestart"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="32dp"
-                    android:background="@color/colorAccent"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Start Time"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/register_last" />
+                    <TextView
+                        android:id="@+id/create_view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat"
+                        android:text="End Time"
+                        android:textAlignment="center"
+                        android:textColor="@color/textOnPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/create_setdate" />
 
-                <TextView
-                    android:id="@+id/create_view2"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="60dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="-"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/create_timeend" />
+                    <Button
+                        android:id="@+id/create_timeend"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/textOnSecondary"
+                        android:fontFamily="@font/montserrat"
+                        android:text="00:00"
+                        android:textColor="@color/textOnPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/register_last" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/create_view1"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Set Date"
                     android:textAlignment="center"
+                    android:textColor="@color/textOnPrimary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/create_timestart" />
 
                 <Button
                     android:id="@+id/create_setdate"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="150dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@color/colorAccent"
+                    android:backgroundTint="@color/textOnSecondary"
                     android:fontFamily="@font/montserrat"
-                    android:text="Set Date"
+                    android:text="30-04-2019"
+                    android:textColor="@color/textOnPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/register_last" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/create_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Repeat Every Week"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_view3" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                app:boxBackgroundColor="@color/textOnSecondary"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/register_first"
-                    android:layout_width="225dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="52dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@android:drawable/editbox_background"
+                    android:id="@+id/create_classdesc"
+                    style="@style/LoginTextInputLayoutStyle"
+                    android:layout_width="235dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="0dp"
+                    android:layout_marginTop="79dp"
+                    android:layout_marginEnd="80dp"
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
-                    android:hint="Class ID"
-                    android:inputType="textPersonName"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-                <EditText
-                    android:id="@+id/register_last"
-                    android:layout_width="225dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="52dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:ems="10"
-                    android:fontFamily="@font/montserrat"
-                    android:hint="Class Name"
-                    android:inputType="textPersonName"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/register_first" />
-
-                <Button
-                    android:id="@+id/create_create"
-                    android:layout_width="200dp"
-                    android:layout_height="75dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Create Class"
-                    android:textColor="@android:color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-                <Button
-                    android:id="@+id/create_timeend"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="60dp"
-                    android:background="@color/colorAccent"
-                    android:fontFamily="@font/montserrat"
-                    android:text="End Time"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/register_last" />
-
-                <TextView
-                    android:id="@+id/create_view3"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="-"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/create_setdate" />
-
-                <EditText
-                    android:id="@+id/editText"
-                    android:layout_width="180dp"
-                    android:layout_height="115dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:ems="10"
-                    android:fontFamily="@font/montserrat"
+                    android:gravity="start"
                     android:hint="Class Description"
-                    android:inputType="textMultiLine"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/create_checkbox" />
-            </android.support.constraint.ConstraintLayout>
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/create_create"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="200dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/colorSecondary"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Create Class"
+                android:textColor="@android:color/white" />
+
         </LinearLayout>
     </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

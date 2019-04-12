@@ -3,7 +3,7 @@ package com.testcom.attendon;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -88,9 +88,9 @@ public class Class2Create extends AppCompatActivity {
                  * Method ini dipanggil saat kita selesai memilih waktu di DatePicker
                  */
 
-                if (time==1){startview.setText(hourOfDay+":"+minute);}
+                if (time==1){starttime.setText(hourOfDay+":"+minute);}
 
-                else if (time==2){endview.setText(hourOfDay+":"+minute);}
+                else if (time==2){endtime.setText(hourOfDay+":"+minute);}
 
             }
         },
@@ -135,7 +135,7 @@ public class Class2Create extends AppCompatActivity {
                 /**
                  * Update TextView dengan tanggal yang kita pilih
                  */
-                dateview.setText(dateFormatter.format(newDate.getTime()));
+                setdate.setText(dateFormatter.format(newDate.getTime()));
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));

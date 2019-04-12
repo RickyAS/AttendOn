@@ -1,11 +1,10 @@
 package com.testcom.attendon;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -30,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
                     fto.commit();
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    FragmentTransaction ftu = getSupportFragmentManager().beginTransaction();
+                    ftu.replace(R.id.mainframe, new Info());
+                    ftu.commit();
                     return true;
             }
             return false;

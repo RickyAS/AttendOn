@@ -1,12 +1,15 @@
 package com.testcom.attendon;
 
+import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,9 +27,8 @@ public class MainActivity extends AppCompatActivity {
                     ft.commit();
                     return true;
                 case R.id.navigation_dashboard:
-                    FragmentTransaction fto = getSupportFragmentManager().beginTransaction();
-                    fto.replace(R.id.mainframe, new Classes());
-                    fto.commit();
+                    Intent intent = new Intent(MainActivity.this, Qr_Scanner.class);
+                    startActivity(intent);
                     return true;
                 case R.id.navigation_notifications:
                     FragmentTransaction ftu = getSupportFragmentManager().beginTransaction();

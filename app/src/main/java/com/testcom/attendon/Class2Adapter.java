@@ -1,5 +1,6 @@
 package com.testcom.attendon;
 
+import android.content.Context;
 import android.content.Intent;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,18 +9,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import com.testcom.attendon.model.TampilMahasiswaModel;
 import java.util.ArrayList;
 
 
 public class Class2Adapter extends RecyclerView.Adapter<Class2Adapter.MahasiswaViewHolder> {
 
-
-    private ArrayList<EnterData> dataList;
-
-    public Class2Adapter(ArrayList<EnterData> dataList) {
-        this.dataList = dataList;
+    private Context context;
+    private ArrayList<TampilMahasiswaModel> listTampilMahasiswa;
+    private ArrayList<TampilMahasiswaModel> getListTampilMahasiswa() {
+        return listTampilMahasiswa;
     }
+    public void setListTampilMahasiswa(ArrayList<TampilMahasiswaModel> listTampilMahasiswa) {
+        this.listTampilMahasiswa = listTampilMahasiswa;
+    }
+    public Class2Adapter(Context context) {
+        this.context = context;
+    }
+
 
     @Override
     public MahasiswaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,15 +38,15 @@ public class Class2Adapter extends RecyclerView.Adapter<Class2Adapter.MahasiswaV
 
     @Override
     public void onBindViewHolder(final MahasiswaViewHolder holder, final int position) {
-        holder.txtNama.setText(dataList.get(position).getNama());
-        holder.txtNpm.setText(dataList.get(position).getNpm());
-        holder.txtNoHp.setText(dataList.get(position).getNohp());
+        holder.txtNama.setText(listTampilMahasiswa.get(position).getNim());
+        holder.txtNpm.setText(listTampilMahasiswa.get(position).getNama());
+        holder.txtNoHp.setText(listTampilMahasiswa.get(position).getNama_fakultas());
 
         holder.cvMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), Class2Students.class);
-                intent.putExtra("lol",dataList.get(position).getNama());
+                intent.putExtra("lol",listTampilMahasiswa.get(position).getNama());
                 v.getContext().startActivity(intent);
 
             }
@@ -48,7 +55,7 @@ public class Class2Adapter extends RecyclerView.Adapter<Class2Adapter.MahasiswaV
 
     @Override
     public int getItemCount() {
-        return (dataList != null) ? dataList.size() : 0;
+        return getListTampilMahasiswa().size();
 
     }
 

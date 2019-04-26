@@ -1,31 +1,55 @@
 package com.testcom.attendon;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Class2Create extends AppCompatActivity {
     private Button starttime, endtime, setdate, createclass;
+    private EditText classid, classname, classdesc;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private TimePickerDialog timePickerDialog;
     private TextView startview, endview, dateview;
+    private ProgressDialog progressDialog;
+    private RequestQueue requestQueue;
+    private String aa, bb, cc;
+    String HttpUrl = "https://upview.000webhostapp.com/attendon/owned_class_create.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.class2_create);
+
+        classid = (EditText) findViewById(R.id.create_classid);
+        classname = (EditText) findViewById(R.id.create_classname);
+        classdesc = (EditText) findViewById(R.id.create_classdesc);
+
+        aa = classid.getText().toString();
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
@@ -59,17 +83,71 @@ public class Class2Create extends AppCompatActivity {
                 showDateDialog();
             }
         });
+        requestQueue = Volley.newRequestQueue(Class2Create.this);
+        progressDialog = new ProgressDialog(Class2Create.this);
+
 
         createclass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Class2Create.this,MainActivity.class);
-                startActivity(i);
+                // Showing progress dialog at user registration time.
+                progressDialog.setMessage("Please Wait, We are Inserting Your Data on Server");
+                progressDialog.show();
+
+                // Creating string request with post method.
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, HttpUrl,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String ServerResponse) {
+
+                                // Hiding the progress dialog after all task complete.
+                                progressDialog.dismiss();
+
+                                // Showing response message coming from server.
+                                Toast.makeText(Class2Create.this, ServerResponse, Toast.LENGTH_LONG).show();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError volleyError) {
+
+                                // Hiding the progress dialog after all task complete.
+                                progressDialog.dismiss();
+
+                                // Showing error message if something goes wrong.
+                                Toast.makeText(Class2Create.this, volleyError.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        }) {
+                    @Override
+                    protected Map<String, String> getParams() {
+
+                        // Creating Map String Params.
+                        Map<String, String> params = new HashMap<String, String>();
+
+                        // Adding All values to Params.
+                        params.put("class_code", classid.getText().toString().trim());
+                        params.put("class_name", classname.getText().toString().trim());
+
+
+                        return params;
+                    }
+
+                };
+
+                // Creating RequestQueue.
+                RequestQueue requestQueue = Volley.newRequestQueue(Class2Create.this);
+
+                // Adding the StringRequest object into requestQueue.
+                requestQueue.add(stringRequest);
+
+
+
             }
         });
 
-
     }
+
+
 
     private void showTimeDialog(int ind) {
         final int time = ind;

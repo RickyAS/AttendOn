@@ -6,17 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.testcom.attendon.model.TampilMahasiswaModel;
+import com.testcom.attendon.model.OwnedClassModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,23 +31,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class Class2 extends Fragment {
     private RecyclerView recyclerView;
-    private ArrayList<EnterData> enterDataArrayList;
     private FloatingActionButton create;
-    private JsonArrayRequest request;
-    private TextView txtNim, txtNama, txtFakultas, txtProdi;
 
-    private String nim="";
-    private String nama="";
-    private String fakultas="";
+    private String code="";
+    private String name="";
+    private String time="";
+    private String start_time="";
+    private String end_time="";
+    private String date="";
+    private String desc="";
 
-    ArrayList<TampilMahasiswaModel> listMhs = new ArrayList<TampilMahasiswaModel>();
-    RequestQueue requestQueue;
+    ArrayList<OwnedClassModel> listClass2 = new ArrayList<OwnedClassModel>();
+    RequestQueue requestQueueClass2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.class2, container,false);
-        getUserData();
+        getClass2Data();
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.class2_recycle);
@@ -67,19 +66,10 @@ public class Class2 extends Fragment {
     }
 
 
-    void addData(){
-        enterDataArrayList = new ArrayList<>();
-        enterDataArrayList.add(new EnterData("Bahasa Indonesia", "09.00-10.00", "25-4-2019"));
-        enterDataArrayList.add(new EnterData("Matematika", "09.00-10.00", "26-4-2019"));
-        enterDataArrayList.add(new EnterData("Sains", "09.00-10.00", "27-4-2019"));
-        enterDataArrayList.add(new EnterData("Bahasa Inggris", "09.00-10.00", "28-4-2019"));
-        enterDataArrayList.add(new EnterData("Bahasa Indonesia", "09.00-10.00", "29-4-2019"));
-        enterDataArrayList.add(new EnterData("Matematika", "09.00-10.00", "30-4-2019"));
-    }
 
-    private void getUserData() {
-        listMhs.clear();
-        requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+    private void getClass2Data() {
+        listClass2.clear();
+        requestQueueClass2 = Volley.newRequestQueue(getContext());
         JsonObjectRequest jor = new JsonObjectRequest(Request.Method.GET,
                 "https://upview.000webhostapp.com/attendon/owned_class.php",
                 null,
@@ -89,25 +79,27 @@ public class Class2 extends Fragment {
                         try {
                             JSONArray hasil = null;
                             try {
-                                hasil = response.getJSONArray("mhs");
+                                hasil = response.getJSONArray("owned_class");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
                             for (int i = 0; i < hasil.length(); i++) {
                                 JSONObject jsonObject = hasil.getJSONObject(i);
-                                nim = jsonObject.getString("class_name");
-                                nama = jsonObject.getString("class_description");
-                                fakultas = jsonObject.getString("class_date");
+                                code = jsonObject.getString("class_code");
+                                name = jsonObject.getString("class_name");
+                                desc = jsonObject.getString("class_description");
+                                date = jsonObject.getString("class_date");
+                                start_time = jsonObject.getString("class_start");
+                                end_time = jsonObject.getString("class_end");
 
-
-                                TampilMahasiswaModel m = new TampilMahasiswaModel(nim,nama,fakultas);
-                                listMhs.add(m);
-                                //Toast.makeText(TampilMahasiswa.this, ""+listMhs, Toast.LENGTH_SHORT).show();
+                                time = start_time +"-"+end_time;
+                                OwnedClassModel m = new OwnedClassModel(code,name,time,date,desc);
+                                listClass2.add(m);
                             }
                             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                            Class2Adapter end = new Class2Adapter(getContext().getApplicationContext());
-                            end.setListTampilMahasiswa(listMhs);
+                            Class2Adapter end = new Class2Adapter(getContext());
+                            end.setListOwnedClass(listClass2);
                             recyclerView.setAdapter(end);
                             DividerItemDecoration itemDecor = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
                             recyclerView.addItemDecoration(itemDecor);
@@ -126,7 +118,7 @@ public class Class2 extends Fragment {
                     }
                 }
         );
-        requestQueue.add(jor);
+        requestQueueClass2.add(jor);
 
 }}
 

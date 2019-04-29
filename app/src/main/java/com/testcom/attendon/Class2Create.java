@@ -3,10 +3,12 @@ package com.testcom.attendon;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,14 +33,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Class2Create extends AppCompatActivity {
     private Button starttime, endtime, setdate, createclass;
     private EditText classid, classname, classdesc;
+    private CheckBox checker;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private TimePickerDialog timePickerDialog;
     private TextView startview, endview, dateview;
     private ProgressDialog progressDialog;
     private RequestQueue requestQueue;
-    private String aa, bb, cc;
-    String HttpUrl = "https://upview.000webhostapp.com/attendon/owned_class_create.php";
+    private String HttpUrl = "https://upview.000webhostapp.com/attendon/owned_class_create.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +50,7 @@ public class Class2Create extends AppCompatActivity {
         classid = (EditText) findViewById(R.id.create_classid);
         classname = (EditText) findViewById(R.id.create_classname);
         classdesc = (EditText) findViewById(R.id.create_classdesc);
-
-        aa = classid.getText().toString();
+        checker = (CheckBox) findViewById(R.id.create_checkbox);
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
@@ -105,6 +106,9 @@ public class Class2Create extends AppCompatActivity {
 
                                 // Showing response message coming from server.
                                 Toast.makeText(Class2Create.this, ServerResponse, Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(Class2Create.this, Class2.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
                             }
                         },
                         new Response.ErrorListener() {
@@ -127,8 +131,16 @@ public class Class2Create extends AppCompatActivity {
                         // Adding All values to Params.
                         params.put("class_code", classid.getText().toString().trim());
                         params.put("class_name", classname.getText().toString().trim());
-
-
+                        params.put("class_description", classdesc.getText().toString().trim());
+                        params.put("class_date", setdate.getText().toString().trim());
+                        params.put("class_start", starttime.getText().toString().trim());
+                        params.put("class_end", endtime.getText().toString().trim());
+                        if (checker.isChecked()){
+                            params.put("class_repeat", "1");
+                        }
+                        else {
+                            params.put("class_repeat", "0");
+                        }
                         return params;
                     }
 
@@ -139,8 +151,6 @@ public class Class2Create extends AppCompatActivity {
 
                 // Adding the StringRequest object into requestQueue.
                 requestQueue.add(stringRequest);
-
-
 
             }
         });

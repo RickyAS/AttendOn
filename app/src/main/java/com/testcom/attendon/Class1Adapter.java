@@ -1,8 +1,6 @@
 package com.testcom.attendon;
 
 import android.content.Intent;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class Class1Adapter extends RecyclerView.Adapter<Class1Adapter.MahasiswaViewHolder> {
@@ -24,7 +24,7 @@ public class Class1Adapter extends RecyclerView.Adapter<Class1Adapter.MahasiswaV
     @Override
     public MahasiswaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.row_class1, parent, false);
+        View view = layoutInflater.inflate(R.layout.row_owned_class, parent, false);
         return new MahasiswaViewHolder(view);
 
     }
@@ -57,10 +57,11 @@ public class Class1Adapter extends RecyclerView.Adapter<Class1Adapter.MahasiswaV
         private LinearLayout cvMain;
         public MahasiswaViewHolder(View itemView) {
             super(itemView);
-            txtNama = (TextView) itemView.findViewById(R.id.txt_student);
-            txtNpm = (TextView) itemView.findViewById(R.id.txt_npm_mahasiswa);
-            txtNoHp = (TextView) itemView.findViewById(R.id.txt_nohp_mahasiswa);
-            cvMain = (LinearLayout) itemView.findViewById(R.id.dog);
+            txtNama = (TextView) itemView.findViewById(R.id.row_oc_name);
+            txtNpm = (TextView) itemView.findViewById(R.id.row_oc_time);
+            txtNoHp = (TextView) itemView.findViewById(R.id.row_oc_date);
+            cvMain = (LinearLayout) itemView.findViewById(R.id.row_oc_layout);
+
 
 
         }

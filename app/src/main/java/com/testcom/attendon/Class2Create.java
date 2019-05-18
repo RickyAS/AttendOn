@@ -3,7 +3,9 @@ package com.testcom.attendon;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -40,7 +42,6 @@ public class Class2Create extends AppCompatActivity {
     private TextView startview, endview, dateview;
     private ProgressDialog progressDialog;
     private RequestQueue requestQueue;
-    private String HttpUrl = "https://upview.000webhostapp.com/attendon/owned_class_create.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +92,14 @@ public class Class2Create extends AppCompatActivity {
         createclass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final SharedPreferences alldata = getSharedPreferences("alldata", Context.MODE_PRIVATE);
                 // Showing progress dialog at user registration time.
                 progressDialog.setMessage("Please Wait, We are Inserting Your Data on Server");
                 progressDialog.show();
 
                 // Creating string request with post method.
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, HttpUrl,
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://upview.000webhostapp.com/attendon/owned_class_create.php",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String ServerResponse) {
@@ -129,6 +132,7 @@ public class Class2Create extends AppCompatActivity {
                         Map<String, String> params = new HashMap<String, String>();
 
                         // Adding All values to Params.
+                        params.put("email", alldata.getString("email", "fail"));
                         params.put("class_code", classid.getText().toString().trim());
                         params.put("class_name", classname.getText().toString().trim());
                         params.put("class_description", classdesc.getText().toString().trim());

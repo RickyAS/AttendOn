@@ -15,17 +15,16 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="84dp"
+            android:layout_width="137dp"
+            android:layout_height="113dp"
             android:layout_margin="10dp"
             android:layout_marginStart="35dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@mipmap/ic_launcher"
+            android:background="@drawable/ic_users"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars[0]" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/info_name"
@@ -52,7 +51,7 @@
                 android:layout_width="95dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@android:drawable/ic_menu_report_image" />
+                android:src="@drawable/ic_id_card" />
 
             <TextView
                 android:id="@+id/info_profile"
@@ -73,6 +72,7 @@
             android:background="@android:color/darker_gray" />
 
         <LinearLayout
+            android:id="@+id/info_creds"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:orientation="horizontal">
@@ -82,7 +82,7 @@
                 android:layout_width="95dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@android:drawable/ic_menu_info_details" />
+                android:src="@drawable/ic_megaphone" />
 
             <TextView
                 android:id="@+id/info_credits"
@@ -103,8 +103,10 @@
             android:background="@android:color/darker_gray" />
 
         <LinearLayout
+            android:id="@+id/out"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
+            android:clickable="true"
             android:orientation="horizontal">
 
             <ImageView
@@ -112,7 +114,7 @@
                 android:layout_width="95dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@android:drawable/ic_lock_power_off" />
+                android:src="@drawable/ic_shutdown" />
 
             <TextView
                 android:id="@+id/info_signout"

@@ -10,8 +10,6 @@ public class OwnedClassModel implements Serializable {
     private String date;
     private String desc;
 
-    public OwnedClassModel(){}
-
 
     public OwnedClassModel(String code, String name, String time, String date, String desc) {
         this.code = code;

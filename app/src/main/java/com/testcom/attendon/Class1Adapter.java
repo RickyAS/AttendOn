@@ -1,5 +1,6 @@
 package com.testcom.attendon;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,39 +8,52 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.testcom.attendon.model.YourClassModel;
+
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class Class1Adapter extends RecyclerView.Adapter<Class1Adapter.MahasiswaViewHolder> {
+public class Class1Adapter extends RecyclerView.Adapter<Class1Adapter.MahasiswaView> {
 
+    private Context context;
+    private ArrayList<YourClassModel> listYourClass;
 
-    private ArrayList<EnterData> dataList;
-
-    public Class1Adapter(ArrayList<EnterData> dataList) {
-        this.dataList = dataList;
+    public ArrayList<YourClassModel> getListYourClass() {
+        return listYourClass;
     }
 
+    public void setListYourClass(ArrayList<YourClassModel> listYourClass) {
+        this.listYourClass = listYourClass;
+    }
+
+    public Class1Adapter(Context context) {
+        this.context = context;
+    }
+
+
     @Override
-    public MahasiswaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Class1Adapter.MahasiswaView onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.row_owned_class, parent, false);
-        return new MahasiswaViewHolder(view);
+        View view = layoutInflater.inflate(R.layout.row_your_class, parent, false);
+        return new Class1Adapter.MahasiswaView(view);
 
     }
 
     @Override
-    public void onBindViewHolder(final MahasiswaViewHolder holder, final int position) {
-        holder.txtNama.setText(dataList.get(position).getNama());
-        holder.txtNpm.setText(dataList.get(position).getNpm());
-        holder.txtNoHp.setText(dataList.get(position).getNohp());
+    public void onBindViewHolder(final Class1Adapter.MahasiswaView holder, final int position) {
+        holder.name.setText(listYourClass.get(position).getName());
+        holder.time.setText(listYourClass.get(position).getTime());
+        holder.date.setText(listYourClass.get(position).getDate());
+        holder.desc.setText(listYourClass.get(position).getDesc());
 
         holder.cvMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), Class1Absence.class);
-                intent.putExtra("lol",dataList.get(position).getNama());
+                intent.putExtra("class_title",listYourClass.get(position).getName());
+                intent.putExtra("class_code", listYourClass.get(position).getCode());
                 v.getContext().startActivity(intent);
 
             }
@@ -48,20 +62,20 @@ public class Class1Adapter extends RecyclerView.Adapter<Class1Adapter.MahasiswaV
 
     @Override
     public int getItemCount() {
-        return (dataList != null) ? dataList.size() : 0;
+        return getListYourClass().size();
 
     }
 
-    public class MahasiswaViewHolder extends RecyclerView.ViewHolder{
-        private TextView txtNama, txtNpm, txtNoHp;
+    public class MahasiswaView extends RecyclerView.ViewHolder{
+        private TextView name, time, date, desc;
         private LinearLayout cvMain;
-        public MahasiswaViewHolder(View itemView) {
+        public MahasiswaView(View itemView) {
             super(itemView);
-            txtNama = (TextView) itemView.findViewById(R.id.row_oc_name);
-            txtNpm = (TextView) itemView.findViewById(R.id.row_oc_time);
-            txtNoHp = (TextView) itemView.findViewById(R.id.row_oc_date);
-            cvMain = (LinearLayout) itemView.findViewById(R.id.row_oc_layout);
-
+            name = (TextView) itemView.findViewById(R.id.row_yc_name);
+            time = (TextView) itemView.findViewById(R.id.row_yc_time);
+            date = (TextView) itemView.findViewById(R.id.row_yc_date);
+            desc = (TextView) itemView.findViewById(R.id.row_yc_desc);
+            cvMain = (LinearLayout) itemView.findViewById(R.id.row_yc_layout);
 
 
         }

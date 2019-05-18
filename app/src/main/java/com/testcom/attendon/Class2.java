@@ -1,12 +1,17 @@
 package com.testcom.attendon;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -21,6 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +39,10 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Class2 extends Fragment {
     private RecyclerView recyclerView;
     private FloatingActionButton create;
-
+    private ProgressBar bar;
+    private SharedPreferences alldata;
+    private TextView empty;
+    private String email="";
     private String code="";
     private String name="";
     private String time="";
@@ -48,11 +58,13 @@ public class Class2 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.class2, container,false);
+
         getClass2Data();
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.class2_recycle);
-
+        bar = view.findViewById(R.id.class2_prog);
+        empty = view.findViewById(R.id.class2_empty);
         create = (FloatingActionButton) view.findViewById(R.id.class2_create);
 
         create.setOnClickListener(new View.OnClickListener() {
@@ -68,11 +80,15 @@ public class Class2 extends Fragment {
 
 
     private void getClass2Data() {
+        alldata = getActivity().getSharedPreferences("alldata", Context.MODE_PRIVATE);
         listClass2.clear();
         requestQueueClass2 = Volley.newRequestQueue(getContext());
-        JsonObjectRequest jor = new JsonObjectRequest(Request.Method.GET,
+        Map<String, String> params = new HashMap<>();
+        params.put("email", alldata.getString("email", "fail"));
+        JSONObject parameters = new JSONObject(params);
+        JsonObjectRequest jor = new JsonObjectRequest(Request.Method.POST,
                 "https://upview.000webhostapp.com/attendon/owned_class.php",
-                null,
+                parameters,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -101,6 +117,17 @@ public class Class2 extends Fragment {
                             Class2Adapter end = new Class2Adapter(getContext());
                             end.setListOwnedClass(listClass2);
                             recyclerView.setAdapter(end);
+                            if(hasil.isNull(0)){
+                                recyclerView.setVisibility(View.GONE);
+                                bar.setVisibility(View.GONE);
+                                empty.setVisibility(View.VISIBLE);
+                            }
+
+                            else {
+                                recyclerView.setVisibility(View.VISIBLE);
+                                bar.setVisibility(View.GONE);
+                                empty.setVisibility(View.GONE);
+                            }
                             DividerItemDecoration itemDecor = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
                             recyclerView.addItemDecoration(itemDecor);
 
@@ -118,6 +145,11 @@ public class Class2 extends Fragment {
                     }
                 }
         );
+
+        jor.setRetryPolicy(new DefaultRetryPolicy(
+                5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueueClass2.add(jor);
 
 }}
